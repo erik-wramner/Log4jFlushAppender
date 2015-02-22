@@ -34,5 +34,5 @@
       </plugin>
     </plugins>
   </build>
-  <description>JDBC appender for Log4j 1.2 that flushes file appenders with buffered I/O.</description>
+  <description>Appender for Log4j 1.2 that flushes file appenders with buffered I/O.</description>
 </project>
