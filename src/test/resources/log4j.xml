@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration debug="false"
+  xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+  <appender name="buffered-1" class="org.apache.log4j.FileAppender">
+    <param name="File" value="buffered-1.log" />
+    <param name="BufferedIO" value="true" />
+    <param name="BufferSize" value="8192" />
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%m%n" />
+    </layout>
+  </appender>
+
+  <appender name="buffered-2" class="org.apache.log4j.FileAppender">
+    <param name="File" value="buffered-2.log" />
+    <param name="BufferedIO" value="true" />
+    <param name="BufferSize" value="8192" />
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%m%n" />
+    </layout>
+  </appender>
+
+  <appender name="buffered-async" class="org.apache.log4j.FileAppender">
+    <param name="File" value="buffered-async.log" />
+    <param name="BufferedIO" value="true" />
+    <param name="BufferSize" value="8192" />
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%m%n" />
+    </layout>
+  </appender>
+
+  <appender name="immediate-1" class="org.apache.log4j.FileAppender">
+    <param name="File" value="immediate-1.log" />
+    <param name="BufferedIO" value="false" />
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%m%n" />
+    </layout>
+  </appender>
+
+  <appender name="immediate-async" class="org.apache.log4j.FileAppender">
+    <param name="File" value="immediate-async.log" />
+    <param name="BufferedIO" value="false" />
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%m%n" />
+    </layout>
+  </appender>
+
+  <appender name="async" class="org.apache.log4j.AsyncAppender">
+    <param name="Blocking" value="true" />
+    <appender-ref ref="immediate-async" />
+    <appender-ref ref="buffered-async" />
+  </appender>
+
+  <appender name="flushOnError" class="name.wramner.log4j.FlushAppender">
+    <param name="Threshold" value="ERROR" />
+    <appender-ref ref="immediate-async" />
+    <appender-ref ref="buffered-async" />
+  </appender>
+
+  <appender name="oneShotFlushOnMessage" class="name.wramner.log4j.FlushAppender">
+    <param name="TriggerMessage" value="Flush the logs!" />
+    <param name="FlushMessage" value="*** Flush" />
+    <param name="OneShot" value="true" />
+    <appender-ref ref="immediate-1" />
+    <appender-ref ref="buffered-1" />
+    <appender-ref ref="async" />
+  </appender>
+
+  <appender name="repeatableFlushOnError" class="name.wramner.log4j.FlushAppender">
+    <param name="Threshold" value="ERROR" />
+    <param name="OneShot" value="false" />
+    <appender-ref ref="immediate-1" />
+    <appender-ref ref="buffered-2" />
+    <appender-ref ref="async" />
+  </appender>
+
+  <logger name="name.wramner.log4j.FlushOneshot" additivity="false">
+    <appender-ref ref="oneShotFlushOnMessage" />
+  </logger>
+
+  <logger name="name.wramner.log4j.FlushRepeatable" additivity="false">
+    <appender-ref ref="repeatableFlushOnError" />
+  </logger>
+
+  <root>
+    <appender-ref ref="async" />
+    <appender-ref ref="immediate-1" />
+    <appender-ref ref="buffered-1" />
+    <appender-ref ref="buffered-2" />
+  </root>
+</log4j:configuration>
