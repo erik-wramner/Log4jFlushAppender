@@ -6,6 +6,29 @@
   <groupId>name.wramner.log4j</groupId>
   <artifactId>FlushAppender</artifactId>
   <version>1.0-SNAPSHOT</version>
+  <name>${project.groupId}:${project.artifactId}</name>
+  <description>Appender for Log4j 1.2 that flushes file appenders with buffered I/O.</description>
+  <url>https://github.com/erik-wramner/Log4jFlushAppender</url>
+  <inceptionYear>2015</inceptionYear>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <name>Erik Wramner</name>
+      <email>erik@wramner.name</email>
+      <organization>Individual</organization>
+      <organizationUrl>https://github.com/erik-wramner</organizationUrl>
+    </developer>
+  </developers>
+  <scm>
+    <connection>scm:git:git@github.com:erik-wramner/Log4jFlushAppender.git</connection>
+    <developerConnection>scm:git:git@github.com:erik-wramner/Log4jFlushAppender.git</developerConnection>
+    <url>git@github.com:erik-wramner/Log4jFlushAppender.git</url>
+  </scm>
   <dependencies>
     <dependency>
       <groupId>log4j</groupId>
@@ -32,7 +55,34 @@
           <showWarnings>true</showWarnings>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.10.1</version>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>2.4</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
-  <description>Appender for Log4j 1.2 that flushes file appenders with buffered I/O.</description>
 </project>

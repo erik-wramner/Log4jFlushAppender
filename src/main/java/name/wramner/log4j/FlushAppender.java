@@ -1,3 +1,16 @@
+/*
+ * Copyright 2015 Erik Wramner
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License. You may obtain a copy of the License at
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing permissions and limitations under
+ * the License.
+ */
 package name.wramner.log4j;
 
 import java.util.Enumeration;
@@ -83,7 +96,7 @@ public class FlushAppender extends AppenderSkeleton implements AppenderAttachabl
     /**
      * Set the trigger message property. Note that null means always flush!
      * 
-     * @param triggerMessage The log message that activates a flush (contains).
+     * @param message The log message that activates a flush (contains).
      */
     public synchronized void setTriggerMessage(String message) {
         this.triggerMessage = message;
